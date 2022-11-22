@@ -19,7 +19,33 @@ reminder = 11 % 3;
 console.log(myName[0]) //first letter of string
 console.log(myName.length) //5
 
+//how to change const array
+const s = [5, 7, 2];
+function editInPlace() {
+    "use trict";
+    s[0] = 3;
+    s[1] = 4;
+    s[2] = 5;    
+}
+editInPlace();
 
+
+function freezeObj() {
+    "use strict";
+    const MATH_CONSTANTS = {
+        PI: 3.14
+    };
+
+    Object.freeze(MATH_CONSTANTS);
+
+    try {
+        MATH_CONSTANTS = 99;
+    } catch (ex) {
+        console.log(ex);    
+    }
+    return MATH_CONSTANTS.PI;    
+}
+const PI = freezeObj();
 
 
 //----arrays---------------------------------------------------------------------------------------------------------------------------------------
@@ -74,6 +100,15 @@ function trueOrFalse(isItTrue) {
 }
 //&& -> and       || -> or
 
+//anonymous function -> arrow function
+                               /*
+var magic = function () {
+    return new Date();   
+}                              */
+const magic = () => new Date();   
+
+const myConcat = (arr1, arr2) => arr1.concat(arr2);
+console.log(myConcat([1, 2], [3, 4, 5]));  
 
 
 
@@ -185,6 +220,29 @@ function convertToInteger(str) {
     return parseInt(str);
 }
 convertToInteger("97");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
