@@ -110,6 +110,120 @@ const magic = () => new Date();
 const myConcat = (arr1, arr2) => arr1.concat(arr2);
 console.log(myConcat([1, 2], [3, 4, 5]));  
 
+//high order functions such as map, filter, reduce
+//one function takes another function as an argument -> suitable for arrow function
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+const squareList = (arr1) => {
+    const squaredIntegers = arr1.filter(num => Number.isInteger(num) && num > 0).map(x => x * x);
+    return squaredIntegers;
+};
+const squaredIntegers = squareList(realNumberArray);
+console.log(squaredIntegers);
+
+
+const increment = (function() {
+    return function increment(number, value = 1) { //value is default 1
+        return number + value;
+    }
+})();
+console.log(increment(5, 2));
+console.log(increment(5));
+
+//rest operator with function parameters
+const sum = (function() {
+    return function sum(...args) {
+        // with ...args -> everything's passed into one array like const args = [ x, y, z ];
+        return args.reduce((a, b) => a + b, 0);
+    };
+})();
+console.log(sum(1, 2, 3));
+console.log(sum(1, 2, 3, 4, 8));
+
+//spread operator
+const arr3 = ['JAN', 'FEB', 'MAR'];
+let arr4;
+(function() {
+    arr4 = [...arr3]; //[... ] -> it spreads out the contents of arr3 into a new array which is arr4
+    arr3[0] = 'potato';
+})();
+console.log(arr3);
+
+//destructuring assignment to assign variables from objects 3.06
+var voxel = {x: 3.6, y: 7.4, z: 6.54};
+
+var x = voxel.x;
+var y = voxel.y;
+var z = voxel.z;
+
+const { x : a, y : b, z : c} = voxel;
+
+const AVG_TEMPERATURES = {
+    today: 77.5,
+    tomorrow: 79
+};
+
+function getTempOfTmrw(avgTemperatures) {
+    "use strict";
+    const { tomorrow : tempOfTomorrow } = avgTemperatures;
+    return tempOfTomorrow;  
+}
+console.log(getTempOfTmrw(AVG_TEMPERATURES));
+
+
+
+//destructuring assignment with nested objects
+
+const LOCAL_FORECAST = {
+    today: { min: 72, max: 83},
+    tomorrow: { min: 73.3, max: 84.6}
+};
+
+function getMaxOfTmrw(forecast) {
+    "use strict";
+    const { tomorrow : {max : maxOfTomorrow} } = forecast;
+    return maxOfTomorrow;  
+}
+console.log(getMaxOfTmrw(LOCAL_FORECAST));
+
+
+
+//destructuring assignment to assign variables from arrays
+const[z, x, , y] = [1, 2, 3, 4, 5, 6];
+console.log(z, x, y);
+
+let a = 8, b = 6;
+(() => {
+    "use strict";
+    [a, b] = [b, a]
+})();
+
+
+//destructuring assignment with rest operator
+const source = [1,2,3,4,5]
+function removeFirstTwo(list) {
+    const [ , , ...arr5] = list;
+    return arr5;
+}
+const arr5 = removeFirstTwo(source);
+console.log(arr5);
+console.log(source);
+
+//destructuring assignment to pass an obj as a function's parameters
+const stats = {
+    max: 56.78, 
+    standard_deviation: 4.34,
+    median: 34.54,
+    mode: 23.87,
+    min: -0.75,
+    average: 35.85
+};
+const half = (function() {
+    return function half({ max, min }) {
+        return (max + min) / 2.0;
+    };
+})();
+console.log(stats);
+console.log(half(stats));
 
 
 
